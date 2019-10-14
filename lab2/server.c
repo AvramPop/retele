@@ -8,7 +8,7 @@ main (){
 
   soc.sin_family=AF_INET;
   soc.sin_port=htons(7777);
-  soc.sin_addr.s_addr=inet_addr("172.30.114.164");
+  soc.sin_addr.s_addr=inet_addr("0.0.0.0");
 
   bind(sfd,&soc,sizeof(struct sockaddr_in));
   r=recvfrom (sfd,buf,100,0,&csoc,&clen);
