@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h> /* close */
+#include <unistd.h>
 
 
 #define SUCCESS 0
@@ -55,9 +55,9 @@ int main (int argc, char *argv[]) {
     }
 
     memset(line,0x0,MAX_MSG);
-static char rcv_msg[MAX_MSG];
-uint32_t lenReceived;
-uint32_t len;
+    static char rcv_msg[MAX_MSG];
+    uint32_t lenReceived;
+    uint32_t len;
     int n;
     int ok = 1;
     while(ok == 1) {
@@ -79,11 +79,11 @@ uint32_t len;
                    ok = 0;
               } else {
                 printf("%s: received from %s:TCP %d : %s\n", argv[0], inet_ntoa(cliAddr.sin_addr), ntohs(cliAddr.sin_port), rcv_msg);
-                /* init line */
                 memset(line,0x0,MAX_MSG);
               }
     }
 
   }
+  return 0;
 
 }

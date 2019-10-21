@@ -32,14 +32,12 @@ int main (int argc, char *argv[]) {
   memcpy((char *) &servAddr.sin_addr.s_addr, h->h_addr_list[0], h->h_length);
   servAddr.sin_port = htons(SERVER_PORT);
 
-  /* create socket */
   sd = socket(AF_INET, SOCK_STREAM, 0);
   if(sd<0) {
     perror("cannot open socket ");
     exit(1);
   }
 
-  /* bind any port number */
   localAddr.sin_family = AF_INET;
   localAddr.sin_addr.s_addr = htonl(INADDR_ANY);
   localAddr.sin_port = htons(0);
@@ -51,20 +49,14 @@ int main (int argc, char *argv[]) {
     exit(1);
   }
 
-  /* connect to server */
   rc = connect(sd, (struct sockaddr *) &servAddr, sizeof(servAddr));
   if(rc<0) {
     perror("cannot connect ");
     exit(1);
   }
-  // uint32_t converted_number = htonl(5);
-  // rc = send(sd, &converted_number, sizeof(converted_number), 0);
-  printf("argc:%d\n", argc);
+
   for(i=2;i<argc;i+=2) {
 
-  //  rc = send(sd, argv[i], strlen(argv[i]) + 1, 0);
-
-// Write the number to the opened socket
 uint32_t readLen = atoi(argv[i]);
 
 uint32_t converted_number = htonl(readLen);
